@@ -1,0 +1,96 @@
+int click,exit,score;
+float x,y;
+Player player;
+
+void setup(){
+   size(400,600);
+   noStroke();
+   click = 0;
+   exit = 0;
+   score = 0;
+   x = width/2;
+   y = height-10;
+   player =new Player();
+}
+
+void draw(){
+  background(0);
+  frameRate(100);
+  
+  if(click==0){
+    Start();
+  }else{
+    Game();
+  }
+}
+
+void Start(){//make a start window
+  fill(255);
+  textAlign(CENTER);
+  textSize(40);
+  text("Game",width/2,height/2);
+  textSize(20);
+  text("Push UP",width/2,height*2/3);
+}
+
+
+void Game(){
+  
+  player.move();
+  player.draw();
+  
+  
+ 
+  //gameoverwindow();
+}
+
+class Player{
+  void move(){
+    if(keyPressed){
+      switch(keyCode){
+        case UP: y-=1;break;
+        case DOWN: y+=1;break;
+        case LEFT: x-=1;break;
+        case RIGHT: x+=1;break;
+      }
+    }
+    if(x-10<0){x=10;}
+    if(x+10>width){x=width-10;}
+    if(y-10<0){y=10;}
+    if(y>height-10){y=height-10;}
+  }
+
+  void draw(){
+    triangle(x,y-10,x-10,y+10,x+10,y+10);
+  }
+}
+
+class shoot{
+  
+}
+
+      
+
+void gameoverwindow(){
+  background(0);
+  fill(255);
+  //score(width/2-20,height/3);
+  text("Push UP",width/2,height*2/3);
+  exit=1;
+}  
+
+void keyPressed(){//if press key
+    if(keyCode==LEFT){
+      
+    }else if(keyCode==RIGHT){
+      
+    }else if(keyCode==UP){
+      click++;      
+    }else if(keyCode==DOWN){
+      
+    }
+    
+    if(exit==1){
+        exit();
+      }
+}
