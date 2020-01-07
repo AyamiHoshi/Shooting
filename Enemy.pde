@@ -1,3 +1,5 @@
+//モブ敵管理。動き、銃撃、Playerに当たったか、消す、描画
+
 class Enemy{
   float xe;
   float ye;
@@ -18,7 +20,6 @@ class Enemy{
     if(score>=100){
       Bullet bullet1=new Bullet(xe,ye,shotspeed,70);
       Bullet bullet2=new Bullet(xe,ye,shotspeed,110);
-//    Bullet bullet3=new Bullet(xe,ye,shotspeed,0);
       bulletList.add(bullet1);
       bulletList.add(bullet2);
     }
