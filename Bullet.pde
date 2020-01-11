@@ -1,3 +1,5 @@
+//銃弾設定
+
 class Bullet{
   float xb;
   float yb;
@@ -10,17 +12,21 @@ class Bullet{
     this.speed=speed;
     this.theta=theta;
   }
-  void move(){
+  void move(){//銃弾の動き　Θの向きに発射するよ
     xb+=cos(radians(theta))*speed;
     yb+=sin(radians(theta))*speed;
   }
-  void hit(){
+  void hit(){//銃弾が当たったか
     bullethit=true;
+    if(bullethit){
+      audio2 = minim.loadFile("BGM3.mp3");
+      audio2.play();
+    }
   }
-  boolean Remove(){
-    return yb<0 || yb>height || bullethit;
+  boolean Remove(){//画面から出たり、ヒットしたら消す
+    return xb<0 || xb>width || yb<0 || yb>height || bullethit;
   }
-  void draw(){
+  void draw(){//銃弾描画
     ellipse(xb,yb,size/2,size/2);
   }
 }
