@@ -1,3 +1,5 @@
+//アイテム設定
+
 class Item{
   float xi;
   float yi;
@@ -8,18 +10,22 @@ class Item{
     this.xi=xi;
     this.yi=yi;
   }
-  void move(){
+  void move(){//アイテムの動き、基本上から下、壁に当たったら跳ね返る
     xi+=cos(radians(theta))*speed;
     yi+=sin(radians(theta))*speed;
     if(xi>=400 || xi<=0){theta=180-theta;}
   }
-  void hit(){
+  void hit(){//Playerに当たったか
     itemhit=true;
+    if(itemhit){
+      audio4 = minim.loadFile("BGM5.mp3");
+      audio4.play();
+    }
   }
-  boolean Remove(){
+  boolean Remove(){//Playerに当たるか、画面外に飛び出したら消滅
     return yi>height || itemhit;
   }
-  void draw(){
-    rect(xi-size/2,yi-size/2,size,size);
+  void draw(){//描画
+    image(I,xi-size/2,yi-size/2,size,size);
   }
 }
